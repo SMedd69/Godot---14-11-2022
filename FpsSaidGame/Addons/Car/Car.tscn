@@ -1,0 +1,150 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/Materials/Car/CarBody.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Materials/Car/Carrosserie.tres" type="Material" id=2]
+[ext_resource path="res://Assets/Materials/Car/Glasses.tres" type="CylinderMesh" id=3]
+[ext_resource path="res://Assets/Materials/Car/Glasses_Back.tres" type="Material" id=4]
+[ext_resource path="res://Assets/Materials/Car/Wheels.tres" type="Material" id=5]
+[ext_resource path="res://Scripts/Car_Camera.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Car.gd" type="Script" id=7]
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 0.9
+bottom_radius = 0.9
+height = 0.6
+radial_segments = 60
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.67787, 0.469562, 3.29651 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.03495, 1.03174, 2.74071 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 3.3, 0.9, 6.6 )
+
+[sub_resource type="PrismMesh" id=5]
+
+[sub_resource type="CapsuleMesh" id=6]
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.0156863, 0.745098, 1, 1 )
+metallic = 1.0
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 2.85722, 3.00759, 2.43134 )
+
+[node name="Car" type="VehicleBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86672, 1.31654, 3.84967 )
+mass = 0.67
+script = ExtResource( 7 )
+
+[node name="VehicleWheel_FL" type="VehicleWheel" parent="."]
+transform = Transform( -1, 0, -2.41593e-07, 0, 1.6, 0, 1.50996e-07, 0, -1.6, -2.36095, 0.492741, -2.29984 )
+use_as_steering = true
+wheel_radius = 0.91
+wheel_friction_slip = 100.0
+suspension_travel = 300.0
+suspension_stiffness = 12.0
+suspension_max_force = 3000.0
+
+[node name="Wheel_Front_Left" type="MeshInstance" parent="VehicleWheel_FL"]
+transform = Transform( 4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, -0.283883, 0, 0 )
+mesh = SubResource( 1 )
+skeleton = NodePath("")
+material/0 = ExtResource( 5 )
+
+[node name="VehicleWheel_FR" type="VehicleWheel" parent="."]
+transform = Transform( -1, 0, -2.41593e-07, 0, 1.6, 0, 1.50996e-07, 0, -1.6, 2.21259, 0.492338, -2.25564 )
+use_as_steering = true
+wheel_radius = 0.91
+wheel_friction_slip = 100.0
+suspension_travel = 300.0
+suspension_stiffness = 12.0
+suspension_max_force = 3000.0
+
+[node name="Wheel_Front_Right" type="MeshInstance" parent="VehicleWheel_FR"]
+transform = Transform( 4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, 0.280743, 0.000459433, 0.00122547 )
+mesh = SubResource( 1 )
+skeleton = NodePath("")
+material/0 = ExtResource( 5 )
+
+[node name="VehicleWheel_BR" type="VehicleWheel" parent="."]
+transform = Transform( -1, 0, -2.41593e-07, 0, 1.6, 0, 1.50996e-07, 0, -1.6, 2.20542, 0.492338, 1.89097 )
+use_as_traction = true
+wheel_radius = 0.91
+wheel_friction_slip = 100.0
+suspension_travel = 300.0
+suspension_stiffness = 12.0
+suspension_max_force = 3000.0
+
+[node name="Wheel_Back_Right" type="MeshInstance" parent="VehicleWheel_BR"]
+transform = Transform( 4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, 0.278478, 0.000458479, 0.00305748 )
+mesh = SubResource( 1 )
+skeleton = NodePath("")
+material/0 = ExtResource( 5 )
+
+[node name="VehicleWheel_BL" type="VehicleWheel" parent="."]
+transform = Transform( -1, 0, -2.41593e-07, 0, 1.6, 0, 1.50996e-07, 0, -1.6, -2.35569, 0.492338, 1.88542 )
+use_as_traction = true
+wheel_radius = 0.91
+wheel_friction_slip = 100.0
+suspension_travel = 300.0
+suspension_stiffness = 12.0
+suspension_max_force = 3000.0
+
+[node name="Wheel_Back_Left" type="MeshInstance" parent="VehicleWheel_BL"]
+transform = Transform( 4.37114e-08, 1, 8.74228e-08, 1, -4.37114e-08, 0, 3.82137e-15, 8.74228e-08, -1, -0.278625, 0.00040257, -0.00249481 )
+mesh = SubResource( 1 )
+skeleton = NodePath("")
+material/0 = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0674235, 0.514338, -0.137659 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0674235, 1.90707, -0.00349903 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0750635, 0.514338, -0.118499 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 2 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1.97285, 0, -8.62358e-08, -0.0750635, 1.94358, -1.29853 )
+mesh = SubResource( 5 )
+material/0 = ExtResource( 1 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( 8.62358e-08, -3.82137e-15, 1, -1.72472e-07, -1, 0, 1.97285, -8.74228e-08, -4.37114e-08, -0.0750635, 1.92106, 0.669971 )
+mesh = SubResource( 5 )
+material/0 = ExtResource( 1 )
+
+[node name="MeshInstance4" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0750635, 1.68589, 1.71526 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 4 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0750635, 1.68975, -1.7127 )
+mesh = ExtResource( 3 )
+material/0 = SubResource( 7 )
+
+[node name="Car_Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.914635, 0.40428, 0, -0.40428, 0.914635, -0.27886, 6.77841, 10.2212 )
+script = ExtResource( 6 )
+
+[node name="ClippedCamera" type="ClippedCamera" parent="Car_Camera"]
+
+[node name="Player_Detection" type="Area" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="Player_Detection"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29825, 1.36892, 0 )
+shape = SubResource( 8 )
+
+[connection signal="body_entered" from="Player_Detection" to="." method="_on_Player_Detection_body_entered"]
+[connection signal="body_exited" from="Player_Detection" to="." method="_on_Player_Detection_body_exited"]
